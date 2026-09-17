@@ -1,0 +1,4 @@
+{"case": "four-dimensional rational mixture", "decision": true, "target_entries": 330, "terms": 97}
+{"case": "embedded impossible triangle", "decision": false, "target_entries": 330, "terms": 0}
+{"case": "five-dimensional mask identity", "entries": 715, "support": 64}
+{"case": "malformed inputs", "count": 4}

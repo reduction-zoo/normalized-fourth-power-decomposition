@@ -1,0 +1,9 @@
+{
+  "solver": "5.1.0",
+  "instances": 31,
+  "yes": 15,
+  "no": 16,
+  "recovery_calls": 15,
+  "masked_vertex_cases": 14,
+  "masked_coordinate_checks": 1158
+}

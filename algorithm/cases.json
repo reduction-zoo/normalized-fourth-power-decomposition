@@ -1,0 +1,10 @@
+[
+  {"name":"singleton","source":{"matrix":[["1"]]},"yes":true},
+  {"name":"independent-pair","source":{"matrix":[["1","0"],["0","1"]]},"yes":true},
+  {"name":"anticorrelated-pair","source":{"matrix":[["1","-1"],["-1","1"]]},"yes":true},
+  {"name":"fractional-pair","source":{"matrix":[["1","2/3"],["2/3","1"]]},"yes":true},
+  {"name":"outside-entry-bound","source":{"matrix":[["1","3/2"],["3/2","1"]]},"yes":false},
+  {"name":"inconsistent-triangle","source":{"matrix":[["1","-1","-1"],["-1","1","-1"],["-1","-1","1"]]},"yes":false},
+  {"name":"triangle-boundary","source":{"matrix":[["1","-1/3","-1/3"],["-1/3","1","-1/3"],["-1/3","-1/3","1"]]},"yes":true},
+  {"name":"triangle-beyond-boundary","source":{"matrix":[["1","-1/2","-1/2"],["-1/2","1","-1/2"],["-1/2","-1/2","1"]]},"yes":false}
+]

@@ -1,0 +1,268 @@
+Normalized Fourth-Power Decomposition Is
+NP‑Complete
+Research manuscript — awaiting human expert assessment
+
+September 16, 2026
+
+Abstract
+We study exact membership in the cone of sums of real symmetric fourth powers, restricted to rational
+tensors whose entries with even index multiplicities are all one. We give a deterministic polynomialtime reduction from complete sign-correlation matrix membership. The construction replaces each
+source coordinate by a pair and explicitly specifies every target moment. Normalization forces every
+real decomposition atom to have equal coordinate magnitudes, which yields rational sign-mixture
+certificates and a direct recovery map from every valid target certificate. The resulting normalized
+membership problem is NP-complete. The claim concerns this restricted cone, rather than positive
+semidefinite tensor membership or approximate decomposition.
+
+1. Introduction
+Exact fourth-power decomposition asks whether a symmetric tensor is a sum of fourth tensor powers
+of real vectors. This question arises in convex tensor formulations of high-order partitioning. Ke and
+Honorio [1] study such a cone with a normalization that fixes every entry having only even index
+multiplicities to one. Their Section 4 and Appendix C discuss the remaining complexity question for
+this normalized domain.
+The normalization matters. Hillar and Lim [2, Theorem 11.2] already state hardness of unrestricted
+Grammian tensors, equivalently sums of fourth powers of linear forms. That statement does not
+supply hardness with the prescribed entries fixed. We establish the restricted result through a complete
+moment construction: each source sign is represented by a product of two target signs. All additional
+moments receive explicit values, so the reduction requires neither a completion oracle nor a supplied
+decomposition.
+Theorem 1 (normalized membership). Let the input be a fully symmetric rational tensor of order
+four and variable dimension 𝑑, with 𝑇𝑖𝑖𝑖𝑖 = 𝑇𝑖𝑖𝑗𝑗 = 1 for all 𝑖, 𝑗. Deciding whether it is a sum of fourth
+powers of real vectors is NP-complete. There is a deterministic Karp reduction from complete signcorrelation matrix membership in dimension 𝑛 to this problem in dimension 2𝑛, with output length
+𝑂(𝑛4 (𝐿 + log(𝑛 + 1))) when each source entry has at most 𝐿 encoded bits. The rule includes polynomial-time recovery of a source certificate from every valid rational sign-mixture certificate of its output.
+The NP-hardness premise is the known full Boolean correlation-polytope membership theorem, attributed to Pitowsky [3] explicitly for complete matrices by Krause et al. [4]. We use its affine equivalence
+with complete sign correlations [5, Section 4.5.2]. The original Pitowsky reduction was not inspected in
+this work; our new tensor construction and its proof are self-contained once that stated source theorem
+is assumed.
+
+2. Normalization and certificates
+
+𝑑
+For a positive integer 𝑑, write 𝒱︀𝑑,4 = {∑𝑟𝑘=1 𝑢⊗4
+𝑘 : 𝑟 ≥ 0, 𝑢𝑘 ∈ ℝ }. Let 𝒩︀𝑑 be its normalized slice,
+defined by 𝑇𝑖𝑖𝑖𝑖 = 𝑇𝑖𝑖𝑗𝑗 = 1 for every pair of coordinates. Full symmetry means invariance under every
+permutation of the four indices. An input lists the ( 𝑑+3
+4 ) sorted index tuples; no unspecified entries are
+allowed. All rational numerators and denominators use finite encodings.
+
+Lemma 2 (sign atoms). On the entire normalized domain,
+𝒩︀𝑑 = conv{𝑧⊗4 : 𝑧 ∈ {−1, 1}𝑑 }.
+
+1
+
+(1)
+
+Proof. Suppose 𝑇 = ∑𝑘 𝑢⊗4
+𝑘 satisfies the normalization. For any coordinates 𝑖, 𝑗, the prescribed
+moments give
+2
+
+∑ (𝑢2𝑘𝑖 − 𝑢2𝑘𝑗 ) = 𝑇𝑖𝑖𝑖𝑖 + 𝑇𝑗𝑗𝑗𝑗 − 2𝑇𝑖𝑖𝑗𝑗 = 0.
+
+(2)
+
+𝑘
+
+Each summand is nonnegative, so each vanishes. Every nonzero vector 𝑢𝑘 has a common positive
+coordinate magnitude 𝑟𝑘 and can be written 𝑢𝑘 = 𝑟𝑘 𝑧𝑘 with 𝑧𝑘 ∈ {−1, 1}𝑑 . Set 𝜆𝑘 = 𝑟𝑘4 . The diagonal
+condition gives ∑𝑘 𝜆𝑘 = 1. Conversely, a convex combination of sign fourth powers is a real fourth1
+power sum by taking 𝑢𝑘 = 𝜆𝑘4 𝑧𝑘 . Zero atoms can be omitted. □
+Lemma 3 (rational certificates). Every rational tensor in 𝒩︀𝑑 has a polynomial-size rational signmixture certificate.
+Proof. Set 𝐷 = ( 𝑑+3
+4 ) + 1, counting the moment equations and the weight-sum equation. Feasibility
+in Equation 1 is a linear system in nonnegative weights with integer coefficient columns in {−1, 1}𝐷 . A
+feasible system has a basic feasible solution with at most 𝐷 nonzero weights. Select independent rows
+on those columns to obtain an invertible square system.
+If each rational right-hand side has at most 𝐿 bits, the product of its denominators has 𝑂(𝐷𝐿) bits.
+𝐷
+After clearing denominators, Cramer’s rule and the determinant bound 𝐷 2 give 𝑂(𝐷𝐿 + 𝐷 log 𝐷) bits
+per weight. Thus the weights and sign vectors together have 𝑂(𝐷2 (𝐿 + log 𝐷) + 𝐷𝑑) bits. This proves
+existence of a short certificate, not a polynomial-time method for finding it. Exact rational arithmetic
+verifies the weighted moments in polynomial time. □
+
+3. The complete paired-sign rule
+The source language consists of rational symmetric matrices with diagonal one that belong to
+𝒞︀𝑛 = conv{𝑠𝑠𝑇 : 𝑠 ∈ {−1, 1}𝑛 }.
+
+(3)
+
+A source certificate is a rational convex mixture of sign vectors realizing all entries of the matrix. A
+target certificate is a rational convex mixture of sign fourth powers realizing all tensor entries. Neither
+certificate must have minimum support; repeated atoms and zero weights are allowed. Lemma 3 makes
+this target convention equivalent to unrestricted real fourth-power membership on the normalized
+domain.
+Use target coordinates 𝑎1 , 𝑏1 , …, 𝑎𝑛 , 𝑏𝑛 . For each multiset 𝐼 of four coordinate indices, let 𝑂(𝐼) denote
+the indices of odd multiplicity. Given the complete source matrix 𝑅, construct the complete tensor
+𝑇𝐼 =
+
+1 if 𝑂(𝐼) = ∅
+𝑅𝑖𝑗 if 𝑂(𝐼) = {𝑎𝑖 , 𝑏𝑖 , 𝑎𝑗 , 𝑏𝑗 } 𝑖 ≠ 𝑗
+{0 otherwise.
+
+(4)
+
+This formula is symmetric and has the required normalization on every source input. It evaluates each
+output coordinate using only the input matrix. Figure 1 explains the designated nonconstant moments.
+
+2
+
+Source second moment
+
+sᵢ
+
+Two coordinates per sign
+
+aᵢ , bᵢ
+
+sⱼ
+
+aᵢ bᵢ aⱼ bⱼ
+
+aⱼ , bⱼ
+bᵢ = aᵢ sᵢ
+
+E[sᵢ sⱼ] = Rᵢⱼ
+
+Target fourth moment
+
+E[aᵢ bᵢ aⱼ bⱼ] = Rᵢⱼ
+
+Recovery: sᵢ = aᵢ bᵢ
+
+Figure 1: Paired-sign construction for distinct indices 𝑖, 𝑗. For the completeness proof, the source sign distribution is first
+averaged with its negative; the masks 𝑎𝑖 are independent uniform signs and 𝑏𝑖 = 𝑎𝑖 𝑠𝑖 . The indicated fourth moment
+equals the source second moment. Recovery multiplies the two coordinates in each pair. Boxes mark coordinate pairs,
+not graph edges. Other moments are specified by Equation 4.
+
+The backward map acts termwise on any valid target certificate {(𝜆𝑘 , 𝑧𝑘 )}:
+𝑠𝑘𝑖 = 𝑧𝑘,𝑎𝑖 𝑧𝑘,𝑏𝑖 .
+
+(5)
+
+It retains the original weights. Both maps are deterministic and operate without a solver. The probability
+distributions used below establish existence and are not part of either executable algorithm.
+
+4. Correctness
+Lemma 4 (completeness). If 𝑅 ∈ 𝒞︀𝑛 , then the tensor in Equation 4 belongs to 𝒩︀2𝑛 .
+Proof. Choose a finite sign distribution 𝑆 realizing 𝑅. Average it with its negative. Its first moments
+become zero, while its second moments remain 𝑅. Independently choose uniform signs 𝐴1 , …, 𝐴𝑛 and
+set 𝐵𝑖 = 𝐴𝑖 𝑆𝑖 .
+Consider an arbitrary fourth-degree coordinate product and cancel all even powers. With no surviving
+coordinates, its expectation is one. Otherwise, any block with odd mask degree makes its expectation
+zero, because that mask is independent and centered. The only surviving blocks therefore contain both
+𝐴𝑖 and 𝐵𝑖 . One such block contributes 𝔼[𝑆𝑖 ] = 0. Two distinct blocks contribute 𝔼[𝑆𝑖 𝑆𝑗 ] = 𝑅𝑖𝑗 . Degree
+four permits no other case. The resulting complete fourth moments are exactly Equation 4. Lemma 2
+completes the proof. □
+The conceptual distribution in this argument may have exponentially many atoms. The instance map
+never enumerates it, and Lemma 3 supplies a polynomial-size certificate for the resulting rational tensor.
+Lemma 5 (soundness and universal recovery). Every valid target sign-mixture certificate of Equation 4 is mapped by Equation 5 to a valid source certificate.
+Proof. Products of two signs are signs. For distinct 𝑖, 𝑗, validity of the supplied target certificate gives
+∑ 𝜆𝑘 𝑠𝑘𝑖 𝑠𝑘𝑗 = ∑ 𝜆𝑘 𝑧𝑘,𝑎𝑖 𝑧𝑘,𝑏𝑖 𝑧𝑘,𝑎𝑗 𝑧𝑘,𝑏𝑗 = 𝑇𝑎𝑖 𝑏𝑖 𝑎𝑗 𝑏𝑗 = 𝑅𝑖𝑗 .
+𝑘
+
+(6)
+
+𝑘
+
+Diagonal moments are one because ∑𝑘 𝜆𝑘 = 1 and 𝑠2𝑘𝑖 = 1. These identities impose no preferred
+support or choice of signs on the certificate. They also cover the one-dimensional source, where there
+are no off-diagonal moments. □
+If a target is feasible in real vectors, Lemmas 2 and 3 give a certificate to which Lemma 5 applies. Together
+with Lemma 4, this proves
+𝑅 ∈ 𝒞︀𝑛
+
+↔︎
+
+𝑇 ∈ 𝒩︀2𝑛 .
+
+This is a many-one equivalence between complete instances.
+
+3
+
+(7)
+
+5. Encoding, totality and hardness
+The forward algorithm enumerates ( 2𝑛+3
+4 ) sorted tuples and evaluates Equation 4. Each entry is
+zero, one or a copied source rational. Parsing, fraction normalization and symmetry checking take
+polynomial bit time; the output has 𝑂(𝑛4 (𝐿 + log(𝑛 + 1))) bits. A conservative schoolbook bound is
+𝑂(𝑛2 (𝐿 + 1)3 + 𝑛4 (𝐿 + log(𝑛 + 1) + 1)2 ) bit operations. For a supplied certificate of encoded length
+𝑊 with 𝑘 terms, recovery uses 𝑂(𝑘𝑛) sign products and copies its weight strings. Its output size is
+𝑂(𝑊 + 𝑘𝑛), and its running time is polynomial in the total source and certificate encoding lengths.
+Malformed source strings are outside the source language. The total forward map sends them to the
+dimension-two normalized tensor whose sorted entries are (1, 2, 1, 0, 1). Its entry of index multiplicity
+three and one is two, which exceeds the absolute moment bound of one for sign mixtures; Lemma
+2 therefore makes it a NO instance. The recovery guarantee assumes a valid certificate of the actual
+output. Behavior outside that premise is unspecified.
+For completeness of the hardness chain, a full Boolean moment matrix 𝑋 maps to a full sign moment
+matrix with one reference coordinate by
+𝑅00 = 1,
+
+𝑅0𝑖 = 2𝑋𝑖𝑖 − 1,
+
+𝑅𝑖𝑗 = 4𝑋𝑖𝑗 − 2𝑋𝑖𝑖 − 2𝑋𝑗𝑗 + 1.
+
+(8)
+1+𝑠 𝑠
+
+On vertices this is 𝑠0 = 1, 𝑠𝑖 = 2𝑥𝑖 − 1; from an arbitrary sign vertex recover 𝑥𝑖 = 20 𝑖 . Convex
+extension gives an exact rational affine equivalence [5]. Full Boolean moment membership is NP-hard
+[3,4], so Equation 8 followed by Equation 4 proves hardness. Lemma 3 proves membership in NP and
+completes Theorem 1. No partial-correlation completion claim is used in this composition.
+
+6. Relation to prior tensor hardness
+Hillar and Lim [2, Section 11] identify Grammian tensors with positive combinations of fourth powers
+and state their unrestricted hardness. Their displayed matrix construction sets 𝑆𝑖𝑗𝑘𝑙 = 𝐴𝑖𝑗 when 𝑖 = 𝑘
+and 𝑗 = 𝑙, and zero otherwise. For the all-one two-dimensional matrix this yields 𝑆1212 = 1 and 𝑆1122 =
+0. Thus the displayed implication does not supply full symmetry or the prescribed normalization. This
+observation does not declare their theorem false or rule out a different proof. Our result supplies a direct
+complete moment map under the stronger fixed-entry restriction.
+Ke and Honorio’s normalized cone [1] matches the input domain here at order four. Their additional
+balance constraint and their larger PSD relaxation are not imposed by our rule. The result consequently
+resolves normalized cone membership without asserting hardness of their entire statistical optimization
+program. Complete decomposability is another name for the unrestricted power-sum cone; the literature
+audit also checked this formulation.
+
+References
+[1] C. Ke and J. Honorio. Exact Partitioning of High-order Models with a Novel Convex Tensor Cone
+Relaxation. Journal of Machine Learning Research 23(284), 1–28, 2022. Primary paper.
+[2] C. J. Hillar and L.-H. Lim. Most Tensor Problems Are NP-Hard. Journal of the ACM 60(6), Article 45,
+2013. doi:10.1145/2512329.
+[3] I. Pitowsky. Correlation polytopes: Their geometry and complexity. Mathematical Programming 50,
+395–414, 1991. doi:10.1007/BF01594946.
+[4] D. Krause, M. Scherer, J. Schwinn and R. Werner. Membership testing for Bernoulli and tail-dependence matrices. Preprint, August 16, 2017. Primary preprint.
+[5] A. Caprara, F. Furini, C. Gentile, L. Liberti and A. Lodi. Hardness of some optimization problems
+over correlation polyhedra. arXiv:2605.02896v1,
+2026. Primary preprint.
+
+4
+
+A. Verification and reproducibility
+The implementation and finite checks accompany this manuscript in the campaign directory. Python
+3.14 and Z3 5.1.0 were used for testing; the candidate itself uses only Python’s standard library. From
+that directory, run:
+python3 work/check.py --self-test
+python3 work/check.py --candidate work/algorithm.py
+python3 work/verify.py --candidate work/algorithm.py
+python3 reviews/paired-sign/check.py
+typst compile work/manuscript.typ work/manuscript.pdf
+
+The candidate reads a JSON matrix from standard input and returns the complete normalized tensor.
+Its --extract mode reads the source plus a target certificate and returns a source certificate. work/
+contract.md defines the rational strings, sorted tensor indices and mixture format. Neither mode calls
+the testing oracles.
+The prepared suite and separate verification program passed 41 instance comparisons and 26 recovery
+calls. Source dimensions were at most three; the verification source oracle uses exact interval and
+tetrahedron criteria. Target oracles enumerate sign vertices and solve rational linear feasibility, then
+check returned moments with exact fractions. Additional independent checks covered a four-dimensional YES/NO pair, recovery from a 97-term split and sign-flipped certificate, and 715 coordinates of
+a five-dimensional mask example. These experiments test actual subprocess outputs. They are finite
+corroboration, not substitutes for the general proof.
+The independent review advanced after focused literature and contract revisions. Novelty was assessed
+against the normalized statement and inspected primary sources on September 16, 2026. The original
+Pitowsky proof was inaccessible; its full-matrix hardness attribution is explicit in [4] and [5]. Unindexed
+work and possible repairs of older tensor arguments remain outside the search coverage. work/
+literature.md and reviews/paired-sign/ retain that assessment and its limitations. Human expert
+assessment of correctness, significance and priority remains outstanding.
+
+5
+
+
