@@ -47,4 +47,5 @@ The retained files were imported from `reduction-research/campaigns/normalized-f
 The history snapshot preserves original bytes, excluding dependency/build caches,
 Python bytecode and OS metadata. No missing transcripts or intermediate versions
 were reconstructed. The source campaign remains intact. Git history starts with
-this local import; there is no remote or publication associated with this archive.
+this import of the retained campaign files. The public archive is
+[normalized-fourth-power-decomposition](https://github.com/isPANN/normalized-fourth-power-decomposition). Public availability does not change the review status.
