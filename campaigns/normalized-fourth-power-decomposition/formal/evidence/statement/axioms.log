@@ -1,0 +1,2 @@
+'NormalizedFourthPowerDecomposition.Goal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NormalizedFourthPowerDecomposition.solve' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1,0 +1,7 @@
+{
+  "id": "Q027",
+  "source_definition": "The source gives a rational symmetric matrix R with diagonal one. Its outputs are rational convex mixtures of sign vectors s\u2208{\u22121,+1}\u207f realizing R as the weighted sum of ss\u1d40, or NO-SOLUTION.",
+  "target_definition": "The target is a fully symmetric rational order-four tensor T of variable dimension with T[i,i,i,i]=T[i,i,j,j]=1 for every i,j. Ask for a representation as a sum of real fourth tensor powers, with no term-count bound. On this normalized domain the output encoding is a rational convex mixture of fourth powers of sign vectors, or NO-SOLUTION; equivalence of that certificate convention to real decomposability is part of the theorem.",
+  "required_result": "Construct deterministic polynomial-time maps F and G: F sends every legal source instance to a legal target instance, and G(x,y) is a valid source output for every valid output y of F(x). Preserve the stated threshold, domain and promises. The requested complexity conclusion is NP-hardness for the stated target problem.",
+  "equation": ""
+}

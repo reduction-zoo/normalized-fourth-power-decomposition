@@ -1,0 +1,3 @@
+import Challenge
+#print axioms NormalizedFourthPowerDecomposition.Goal
+#print axioms NormalizedFourthPowerDecomposition.solve
