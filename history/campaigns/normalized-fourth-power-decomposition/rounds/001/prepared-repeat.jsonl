@@ -1,0 +1,8 @@
+{"case": "singleton", "yes": true, "target_dimension": 2, "recovery_calls": 2}
+{"case": "independent-pair", "yes": true, "target_dimension": 4, "recovery_calls": 2}
+{"case": "anticorrelated-pair", "yes": true, "target_dimension": 4, "recovery_calls": 2}
+{"case": "fractional-pair", "yes": true, "target_dimension": 4, "recovery_calls": 2}
+{"case": "outside-entry-bound", "yes": false, "target_dimension": 4, "recovery_calls": 0}
+{"case": "inconsistent-triangle", "yes": false, "target_dimension": 6, "recovery_calls": 0}
+{"case": "triangle-boundary", "yes": true, "target_dimension": 6, "recovery_calls": 2}
+{"case": "triangle-beyond-boundary", "yes": false, "target_dimension": 6, "recovery_calls": 0}
